@@ -1,8 +1,10 @@
 package main
 
 import (
-	"asciiART")
+	"asciiART"
+	// "fmt"
+)
 
 func main() {
-	asciiART.PrintFileLine(183, "../standard.txt")
+	asciiART.Print_Each_Rune_Line("Hello World")
 }

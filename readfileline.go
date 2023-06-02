@@ -20,17 +20,17 @@ func PrintFileLine(lineNumber int, filePath string) {
 
 	// Read line by line
 	line := ""
-	lineCount := 0	// A counter used to stop at specific line
+	lineCount := 0 // A counter used to stop at specific line
 	for scanner.Scan() {
+		lineCount++
 		// save the line and stop the loop
-		if (lineCount == lineNumber){
-			line += scanner.Text()
+		if lineCount == lineNumber {
+			line = scanner.Text()
 			// line += "\n"
 			break
 		}
-		lineCount++
 	}
-	fmt.Println(line)
+	fmt.Print(line)
 
 	// Check for any errors during scanning
 	if err := scanner.Err(); err != nil {
