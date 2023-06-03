@@ -9,6 +9,10 @@ func Print_Each_Rune_Line(str string) {
 		// Iterate through each character in the input string
 		for _, char := range str {
 			PrintFileLine(MapART(byte(char))+i, "../standard.txt")
+			if char == '\t' {
+
+				fmt.Print("\t")
+			}
 		}
 		fmt.Print("\n") // prints newline to start printing the rest of the art
 	}

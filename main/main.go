@@ -6,5 +6,5 @@ import (
 )
 
 func main() {
-	asciiART.Print_Each_Rune_Line("Hello World")
+	asciiART.PrintART("We Gee\n\n\nChapati\t\t\ttuuna")
 }
