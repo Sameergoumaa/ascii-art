@@ -17,6 +17,8 @@ func Print_Each_Rune_Line(str string) {
 					if str[idx+1] == 't' {
 						fmt.Print("\t")
 						idx++
+					} else {
+						PrintFileLine(MapART(byte(char))+i, "../standard.txt")
 					}
 				}
 			} else {
