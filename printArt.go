@@ -6,7 +6,7 @@ import (
 )
 
 func PrintART(str string) {
-	input_strs := strings.Split(str, "\n")
+	input_strs := strings.Split(str, "\\n")
 	for _, word := range input_strs {
 		if word == "" {
 			fmt.Print("\n")
