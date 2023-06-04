@@ -2,7 +2,7 @@ package asciiART
 
 import "fmt"
 
-func Print_Each_Rune_Line(str string) {
+func Print_Each_Rune_Line(str string, fontname string) {
 
 	// Iterate through eight lines
 	for i := 0; i < 8; i++ {
@@ -18,12 +18,12 @@ func Print_Each_Rune_Line(str string) {
 						fmt.Print("\t")
 						idx++
 					} else {
-						PrintFileLine(MapART(byte(char))+i, "../standard.txt")
+						PrintFileLine(MapART(rune(char))+i, "../standard.txt")
 					}
 				}
 			} else {
 
-				PrintFileLine(MapART(byte(char))+i, "../standard.txt")
+				PrintFileLine(MapART(rune(char))+i, MapFont(fontname))
 			}
 		}
 		fmt.Print("\n") // prints newline to start printing the rest of the art
