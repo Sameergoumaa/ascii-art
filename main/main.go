@@ -2,13 +2,12 @@ package main
 
 import (
 	"asciiART"
+	"flag"
 	"fmt"
 	"os"
-	// "fmt"
 )
 
 func main() {
-	//asciiART.PrintART("We Gee\n\n\nChapati\t\t\ttuuna")
 	if len(os.Args) < 2 {
 		fmt.Print()
 	} else if len(os.Args) >= 2 && len(os.Args) < 3 {
@@ -18,6 +17,17 @@ func main() {
 			asciiART.PrintART(os.Args[1], "standard")
 		}
 	} else if len(os.Args) >= 3 {
-		asciiART.PrintART(os.Args[1], os.Args[2])
+		useColor := flag.Bool("color", false, "display colorized output")
+		colorname := flag.String("colors", "White", "coloring")
+		flag.Parse()
+
+		if *useColor {
+
+			colorvalue := *colorname
+			asciiART.Colorize((colorvalue), "Hello, DigitalOcean!")
+			asciiART.PrintART(os.Args[3], "standard")
+		} else {
+			asciiART.PrintART(os.Args[1], os.Args[2])
+		}
 	}
 }
