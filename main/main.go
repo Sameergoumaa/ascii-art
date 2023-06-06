@@ -14,20 +14,21 @@ func main() {
 		if os.Args[1] == "" {
 			fmt.Print()
 		} else {
-			asciiART.PrintART(os.Args[1], "standard")
+			asciiART.PrintART("",os.Args[1], "standard", "white")
 		}
 	} else if len(os.Args) >= 3 {
-		useColor := flag.Bool("color", false, "display colorized output")
-		colorname := flag.String("colors", "White", "coloring")
+		//useColor := flag.Bool("color", false, "display colorized output")
+		colorname := flag.String("color", "", "coloring")
 		flag.Parse()
-
-		if *useColor {
-
+		if *colorname != "" {
 			colorvalue := *colorname
-			asciiART.Colorize((colorvalue), "Hello, DigitalOcean!")
-			asciiART.PrintART(os.Args[3], "standard")
+			if len(os.Args) <= 3 {
+				asciiART.PrintART("",os.Args[2], "standard", colorvalue)
+			} else {
+				asciiART.PrintART(os.Args[2],os.Args[3], "standard", colorvalue)
+			}
 		} else {
-			asciiART.PrintART(os.Args[1], os.Args[2])
+			asciiART.PrintART("",os.Args[1], os.Args[2], "white")
 		}
 	}
 }
