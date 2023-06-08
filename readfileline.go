@@ -6,7 +6,8 @@ import (
 	"os"
 )
 
-func PrintFileLine(str1 string, lineNumber int, filePath string, colorvalue string) {
+func PrintFileLine(lineNumber2 int, lineNumber int, filePath string, colorvalue string) {
+
 	file, err := os.Open(filePath)
 	// If there is an error, then handle it
 	if err != nil {
@@ -15,39 +16,50 @@ func PrintFileLine(str1 string, lineNumber int, filePath string, colorvalue stri
 	}
 	defer file.Close()
 
-	// Create a scanner to read the file line by line
-	scanner := bufio.NewScanner(file)
+	// Create a scanner to read the file messageline by messageline
+	scanner1 := bufio.NewScanner(file)
+	scanner2 := bufio.NewScanner(file)
 
-	// Read line by line
-	if str1 == "" {
-		line := ""
-		lineCount := 0 // A counter used to stop at specific line
-		for scanner.Scan() {
+	// Read messageline by messageline
+	if lineNumber2 == 0 {
+		messageline := ""
+		lineCount := 0 // A counter used to stop at specific messageline
+		for scanner1.Scan() {
 			lineCount++
-			// save the line and stop the loop
+			// save the messageline and stop the loop
 			if lineCount == lineNumber {
-				line = scanner.Text()
+				messageline = scanner1.Text()
 				break
 			}
 		}
-		Colorize(str1, (colorvalue), line)
+		Colorize("", (colorvalue), messageline)
 	} else {
-		line := ""
-		lineCount := 0 // A counter used to stop at specific line
-		for scanner.Scan() {
-			lineCount++
-			// save the line and stop the loop
-			if lineCount == lineNumber {
-				line = scanner.Text()
+		messageline := ""
+		rplline := ""
+		lineCount1 := 0 // A counter used to stop at specific messageline
+		lineCount2 := 0 // A counter used to stop at specific messageline
+		for scanner1.Scan() {
+			lineCount1++
+			// save the messageline and stop the loop
+			if lineCount1 == lineNumber {
+				messageline = scanner1.Text()
 				break
 			}
 		}
-		Colorize(line, (colorvalue), line)
+
+		for scanner2.Scan() {
+			lineCount2++
+			// save the messageline and stop the loop
+			if lineCount2 == lineNumber2 {
+				rplline = scanner2.Text()
+				break
+			}
+		}
+		Colorize(rplline, (colorvalue), messageline)
 	}
-	
-	//fmt.Print(line)
+
 	// Check for any errors during scanning
-	if err := scanner.Err(); err != nil {
+	if err := scanner1.Err(); err != nil {
 		fmt.Println("Error scanning file:", err)
 		return
 	}

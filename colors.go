@@ -2,7 +2,6 @@ package asciiART
 
 import (
 	"fmt"
-	"strings"
 )
 
 func Colorize(replacestr string, color string, message string) {
@@ -14,21 +13,27 @@ func Colorize(replacestr string, color string, message string) {
 		"blue":    "\033[1;34m%s\033[0m",
 		"magenta": "\033[1;35m%s\033[0m",
 		"cyan":    "\033[1;36m%s\033[0m",
-		//"white":   "\033[1;37m%s\033[0m",
-		"orange":  "\033[1;38;5;208m%s\033[0m",
+		"white":   "\033[1;37m%s\033[0m",
 	}
 	if color != "white" {
 		if replacestr == "" {
 			for _, symbol := range message {
-				fmt.Printf(Colors[color], string(symbol))
+				sym := fmt.Sprintf(Colors[color], string(symbol))
+				fmt.Print(sym)
 			}
 		} else {
+			symWhite := ""
+			sym := ""
 			for _, symbol := range message {
-				fmt.Printf(Colors["white"], string(symbol))
+				symWhite = symWhite + fmt.Sprintf(Colors["white"], string(symbol))
 			}
-			fmt.Printf(Colors["blue"],strings.ReplaceAll(message, replacestr, message))
+			fmt.Print(symWhite)
+			for _, rplsymbol := range replacestr {
+				sym = sym + fmt.Sprintf(Colors[color], string(rplsymbol))
+			}
+			fmt.Print(sym)
 		}
 	} else {
-		fmt.Print((Colors[color]), message)
+		fmt.Print("\033[1;37m\033[0m", message)
 	}
 }
