@@ -10,6 +10,7 @@ func PrintART(repplacestr string, message string, fontname string, colorvalue st
 		fmt.Println()
 		return
 	}
+
 	if repplacestr == "" {
 		input_strs := strings.Split(message, "\\n")
 		for _, word := range input_strs {

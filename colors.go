@@ -27,11 +27,12 @@ func Colorize(replacestr string, color string, message string) {
 			for _, symbol := range message {
 				symWhite = symWhite + fmt.Sprintf(Colors["white"], string(symbol))
 			}
-			fmt.Print(symWhite)
+
 			for _, rplsymbol := range replacestr {
 				sym = sym + fmt.Sprintf(Colors[color], string(rplsymbol))
 			}
-			fmt.Print(sym)
+			//filastr := (strings.ReplaceAll(sym,sym,symWhite))
+			fmt.Print(sym+symWhite)
 		}
 	} else {
 		fmt.Print("\033[1;37m\033[0m", message)
